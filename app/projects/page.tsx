@@ -26,6 +26,15 @@ export default function Projects({ searchParams }: Props) {
   const projects = technology
     ? projectsData.filter((project) => project?.tag?.includes(technology))
     : projectsData;
+
+  const dataInLog = {
+    "searchParams:": searchParams,
+    "params.get('tag'):": params.get("tag"),
+    "projek:": projects,
+  };
+
+  console.log(dataInLog);
+
   return (
     <>
       <h1 className="text-xl text-center py-5 font-semibold lg:text-4xl">
@@ -37,7 +46,6 @@ export default function Projects({ searchParams }: Props) {
             const isActive =
               params.get("tag")?.toLowerCase() === item.title.toLowerCase() ||
               (!params.get("tag") && item.title === "All-Projects");
-            //
             return (
               <Link
                 key={item.title}
@@ -50,9 +58,7 @@ export default function Projects({ searchParams }: Props) {
           })}
         </nav>
       </div>
-      <main
-        className={`mt-5 flex flex-col md:grid-cols-2 md:grid lg:grid-cols-3 gap-4`}
-      >
+      <main className="mt-5 flex flex-col md:grid-cols-2 md:grid lg:grid-cols-3 gap-4">
         {projects?.map(({ title, summary, image, slug }, index) => (
           <Suspense fallback={<LoadingProjects />} key={index}>
             <Card key={index}>
@@ -99,18 +105,18 @@ const menu = [
   },
   {
     title: "React",
-    href: "/projects?tag=React",
+    href: "/projects?tag=react",
   },
   {
     title: "Next",
-    href: "/projects?tag=Next",
+    href: "/projects?tag=next",
   },
   {
     title: "HTML",
-    href: "/projects?tag=HTML",
+    href: "/projects?tag=html",
   },
   {
     title: "Wordpress",
-    href: "/projects?tag=Wordpress",
+    href: "/projects?tag=wordpress",
   },
 ];
