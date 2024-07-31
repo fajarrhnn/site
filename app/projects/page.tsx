@@ -12,7 +12,6 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Frown } from "lucide-react";
 import { Suspense } from "react";
-import LoadingProjects from "./loading";
 
 interface Props {
   searchParams: {
@@ -24,7 +23,7 @@ export default function Projects({ searchParams }: Props) {
   const params = useSearchParams();
   const technology = searchParams.tag;
   const projects = technology
-    ? projectsData.filter((project) => project?.tag?.includes(technology))
+    ? projectsData.filter((project) => project.tag?.includes(technology))
     : projectsData;
 
   const dataInLog = {
@@ -60,25 +59,23 @@ export default function Projects({ searchParams }: Props) {
       </div>
       <main className="mt-5 flex flex-col md:grid-cols-2 md:grid lg:grid-cols-3 gap-4">
         {projects?.map(({ title, summary, image, slug }, index) => (
-          <Suspense fallback={<LoadingProjects />} key={index}>
-            <Card key={index}>
-              <Link href={`/projects/${slug}`}>
-                <CardHeader>
-                  <Image
-                    src={image}
-                    alt="projects-image"
-                    className="aspect-video object-cover"
-                  />
-                </CardHeader>
-                <CardContent>
-                  <CardTitle>{title}</CardTitle>
-                  <CardDescription className="mt-3 line-clamp-3">
-                    {summary}
-                  </CardDescription>
-                </CardContent>
-              </Link>
+          <Link href={`/projects/${slug}`} key={index}>
+            <Card>
+              <CardHeader>
+                <Image
+                  src={image!}
+                  alt="projects-image"
+                  className="aspect-video object-cover"
+                />
+              </CardHeader>
+              <CardContent>
+                <CardTitle>{title}</CardTitle>
+                <CardDescription className="mt-3 line-clamp-3">
+                  {summary}
+                </CardDescription>
+              </CardContent>
             </Card>
-          </Suspense>
+          </Link>
         ))}
       </main>
       {!projects ||
