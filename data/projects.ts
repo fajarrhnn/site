@@ -7,7 +7,7 @@ export const projectsData: {
   image: StaticImageData | string;
   href: string;
   slug: string;
-  tag: string[] | undefined;
+  tag: string[] | string | undefined;
 }[] = [
   {
     title: "Jarot Shop",
