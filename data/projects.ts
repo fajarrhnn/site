@@ -16,6 +16,6 @@ export const projectsData: {
     image: images.Hero,
     href: "https://jarot-shop.vercel.app",
     slug: "jarot-shop",
-    tag: ["React", "Next"],
+    tag: ["react", "next"],
   },
 ];
