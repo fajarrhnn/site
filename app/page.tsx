@@ -80,7 +80,11 @@ export default function Home() {
                 <Card key={id}>
                   <CardHeader>
                     <AspectRatio ratio={16 / 9}>
-                      <Image src={image} alt={`thumbnail-project ${title}`} />
+                      <Image
+                        src={image}
+                        alt={`thumbnail-project ${title}`}
+                        className="w-full h-full rounded-md object-cover"
+                      />
                     </AspectRatio>
                   </CardHeader>
                   <CardContent>
