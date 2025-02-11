@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { projects } from "@/data/project";
@@ -16,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export default function Home() {
   return (
@@ -40,7 +40,9 @@ export default function Home() {
           <div className="flex flex-col space-y-4">
             <h1 className="text-3xl font-bold">About Me</h1>
             <p className="text-base text-justify">
-              Hi, I'm Raihan. Vocational High School graduated with Computer and Network Engineering background, have a carrer aspiration as FrontEnd Web Developer and/or IT Support. 
+              Hi, I'm Raihan. Vocational High School graduated with Computer and
+              Network Engineering background, have a carrer aspiration as
+              FrontEnd Web Developer and/or IT Support.
             </p>
             <Button
               size={"lg"}
@@ -77,13 +79,9 @@ export default function Home() {
               .map(({ id, image, title, detailProject, links, slug }) => (
                 <Card key={id}>
                   <CardHeader>
-                    <Image
-                      src={image}
-                      alt="thumbnail-project"
-                      width={175}
-                      height={100}
-                      className="w-auto h-auto"
-                    />
+                    <AspectRatio ratio={16 / 9}>
+                      <Image src={image} alt={`thumbnail-project ${title}`} />
+                    </AspectRatio>
                   </CardHeader>
                   <CardContent>
                     <div className="flex justify-between items-center">
