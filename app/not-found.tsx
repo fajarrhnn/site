@@ -1,8 +1,10 @@
 "use client";
 import { RefreshCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/router";
 
 export default function NotFound({ message }: { message: string }) {
+  const { reload } = useRouter();
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="text-center">
@@ -15,11 +17,7 @@ export default function NotFound({ message }: { message: string }) {
         <p className="text-xl text-gray-500 dark:text-gray-500 mb-8">
           Silahkan buat kutipan untuk pertama kalinya!
         </p>
-        <Button
-          onClick={() => window.location.reload()}
-          variant={"outline"}
-          size={"lg"}
-        >
+        <Button onClick={() => reload()} variant={"outline"} size={"lg"}>
           <RefreshCcw />
           Try again
         </Button>

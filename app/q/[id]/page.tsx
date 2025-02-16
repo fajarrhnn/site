@@ -6,7 +6,7 @@ export default async function DetailQuote({
 }: {
   params: { id: string };
 }) {
-  const data: any = await getQuote(params.id);
+  const data: QuoteTypes[] = await getQuote(params.id);
   if (!data || data.length === 0) {
     return (
       <>
