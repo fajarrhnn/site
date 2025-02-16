@@ -1,11 +1,29 @@
-import Link from "next/link";
+"use client";
+import { RefreshCcw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-export default function NotFound() {
+export default function NotFound({ message }: { message: string }) {
   return (
-    <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="text-center">
+        <h1 className="text-6xl font-bold text-gray-800 dark:text-gray-200 mb-4 animate-bounce">
+          404
+        </h1>
+        <h2 className="text-3xl font-semibold text-gray-600 dark:text-gray-400 mb-6">
+          {message}
+        </h2>
+        <p className="text-xl text-gray-500 dark:text-gray-500 mb-8">
+          Silahkan buat kutipan untuk pertama kalinya!
+        </p>
+        <Button
+          onClick={() => window.location.reload()}
+          variant={"outline"}
+          size={"lg"}
+        >
+          <RefreshCcw />
+          Try again
+        </Button>
+      </div>
     </div>
   );
 }

@@ -1,26 +1,46 @@
-"use client";
-import Link from "next/link";
-import Image from "next/image";
-import { projects } from "@/data/project";
-import Mountain from "@/images/mountain.jpg";
-import { Github, Globe } from "lucide-react";
+import AddQuote from "@/components/addQuote";
+import { getQuote } from "@/helpers/getQuote";
+import { QuoteTypes } from "@/types/quote";
+import Quote from "@/components/quote";
 import { Button } from "@/components/ui/button";
-import {
-  CardTitle,
-  CardDescription,
-  Card,
-  CardHeader,
-  CardContent,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Error from "./error";
+import NotFound from "./not-found";
 
-export default function Home() {
+export default async function Home() {
+  const data = await getQuote();
+  const quotes: QuoteTypes[] = data?.quotes;
+
+  if (data.status === 500) {
+    return (
+      <>
+        <Error
+          status={data?.status}
+          message={data?.message}
+          error={data?.error}
+        />
+      </>
+    );
+  }
   return (
     <>
-      <section className="w-full h-screen flex items-center py-12">
+      <main className="w-11/12 mx-auto py-5">
+        {quotes === null ? (
+          <NotFound message={data?.message} />
+        ) : (
+          <div className="flex flex-col md:grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {quotes?.map((quote) => (
+              <Quote quotes={quote} key={quote.id} />
+            ))}
+          </div>
+        )}
+      </main>
+      <AddQuote />
+    </>
+  );
+}
+
+{
+  /* <section className="w-full h-screen flex items-center py-12">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
@@ -145,7 +165,5 @@ export default function Home() {
             </CardContent>
           </Card>
         </main>
-      </section>
-    </>
-  );
+      </section> */
 }

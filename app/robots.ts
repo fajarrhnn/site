@@ -18,6 +18,9 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/"],
       },
     ],
-    sitemap: "https://fajarrhn.my.id/sitemap.xml",
+    sitemap: [
+      "https://fajarrhn.my.id/sitemap.xml",
+      "https://fjrrhn.vercel.app/sitemap.xml",
+    ],
   };
 }

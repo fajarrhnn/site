@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,9 +22,9 @@ export const metadata: Metadata = {
     default: "Fajar Raihan",
   },
   description: "Fajar Raihan Website Portfolio",
-  icons:{
-    icon:'/icons.jpg'
-  }
+  icons: {
+    icon: "/icons.jpg",
+  },
 };
 
 export default function RootLayout({
@@ -36,9 +37,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
-        <Header />
-        <main className="text-black w-full mx-auto"> {children}</main>
-        <Footer />
+        {/* <Header /> */}
+        <section className="text-black w-full mx-auto min-h-screen">
+          {children}
+        </section>
+        <Toaster />
+        {/* <Footer /> */}
       </body>
     </html>
   );
