@@ -6,36 +6,34 @@ import Error from "./error";
 import NotFound from "./not-found";
 
 export default async function Home() {
-  const data = await getQuote();
-  const quotes: QuoteTypes[] = data?.quotes;
+  try {
+    const data = await getQuote();
+    if (!data || !data.quotes || data.quotes === null) {
+      <NotFound message={data?.message} />;
+    }
+    const quotes: QuoteTypes[] = data.quotes;
 
-  if (data.status === 500) {
     return (
       <>
-        <Error
-          status={data?.status}
-          message={data?.message}
-          error={data?.error}
-        />
-      </>
-    );
-  }
-  return (
-    <>
-      <main className="w-11/12 mx-auto py-5">
-        {quotes === null ? (
-          <NotFound message={data?.message} />
-        ) : (
+        <main className="w-11/12 mx-auto py-5">
           <div className="flex flex-col md:grid md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {quotes?.map((quote) => (
+            {quotes.map((quote) => (
               <Quote quotes={quote} key={quote.id} />
             ))}
           </div>
-        )}
-      </main>
-      <AddQuote />
-    </>
-  );
+        </main>
+        <AddQuote />
+      </>
+    );
+  } catch (error: any) {
+    return (
+      <Error
+        status={error?.status}
+        message="Failed to load quotes"
+        error={error?.message}
+      />
+    );
+  }
 }
 
 {
