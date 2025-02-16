@@ -14,11 +14,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
-import { useToast } from "@/hooks/use-toast";
 
 export default function AddQuote() {
   console.log("API URL:", process.env.NEXT_PUBLIC_URL);
-  const { toast } = useToast();
   const [data, setData] = useState({
     quote: "",
     author: "",

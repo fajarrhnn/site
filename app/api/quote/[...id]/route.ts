@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
         },
       }
     );
-  } catch (error: unknown | any) {
+  } catch (error: any) {
     return NextResponse.json(
       {
         message: "Something went wrong",

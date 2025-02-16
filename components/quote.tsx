@@ -42,9 +42,9 @@ export default function Quote({ quotes }: { quotes: QuoteTypes }) {
           description: `${window.location.href}q/${id}`,
         });
       })
-      .catch((err) => {
+      .catch(() => {
         toast({
-          title: "Gagal menyalin tautam!",
+          title: "Gagal menyalin tautan!",
           variant: "destructive",
         });
       });

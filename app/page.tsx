@@ -2,7 +2,6 @@ import AddQuote from "@/components/addQuote";
 import { getQuote } from "@/helpers/getQuote";
 import { QuoteTypes } from "@/types/quote";
 import Quote from "@/components/quote";
-import { Button } from "@/components/ui/button";
 import Error from "./error";
 import NotFound from "./not-found";
 
