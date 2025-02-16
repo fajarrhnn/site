@@ -1,9 +1,14 @@
+import dynamic from 'next/dynamic'
 import AddQuote from "@/components/addQuote";
 import { getQuote } from "@/helpers/getQuote";
 import { QuoteTypes } from "@/types/quote";
-import Quote from "@/components/quote";
 import Error from "./error";
 import NotFound from "./not-found";
+
+const Quote = dynamic(
+  () => import("@/components/quote"),
+  { ssr: false }
+)
 
 export default async function Home() {
   try {
