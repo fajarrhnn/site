@@ -1,23 +1,21 @@
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 import AddQuote from "@/components/addQuote";
 import { getQuote } from "@/helpers/getQuote";
 import { QuoteTypes } from "@/types/quote";
 import Error from "./error";
 import NotFound from "./not-found";
 
-const Quote = dynamic(
-  () => import("@/components/quote"),
-  { ssr: false }
-)
+const Quote = dynamic(() => import("@/components/quote"), { ssr: false });
 
 export default async function Home() {
-  try {
-    const data = await getQuote();
-    if (!data || !data.quotes || data.quotes === null) {
-      <NotFound message={data?.message} />;
-    }
-    const quotes: QuoteTypes[] = data.quotes;
+  const data = await getQuote();
 
+  if (!data || !data.quotes || data.quotes === null) {
+    <NotFound message={data?.message} />;
+  }
+
+  const quotes: QuoteTypes[] = data.quotes;
+  try {
     return (
       <>
         <main className="w-11/12 mx-auto py-5">

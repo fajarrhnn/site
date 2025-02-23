@@ -17,7 +17,7 @@ export default async function DetailQuote({
 
   return (
     <>
-      <div>Halo {data[0]?.quote}</div>
+      <div>{data[0]?.quote}</div>
     </>
   );
 }

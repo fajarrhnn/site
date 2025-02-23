@@ -1,5 +1,3 @@
-import { QuoteTypes } from "@/types/quote";
-
 export const getQuote = async (id?: string) => {
   const fetchApi = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/quote/${id && `${id}`}`,

@@ -25,7 +25,7 @@ export default function Error({
           Oops! {message}
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
-          {error.message || message} - with {status} status code
+          {error.message || message} - with {status ? status : 400} status code
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Button
